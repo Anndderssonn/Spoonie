@@ -3,52 +3,52 @@
     {
       "id": "c1",
       "title": "Italian",
-      "color": "#9C27B0"
+      "color": "#B74C3A"
     },
     {
       "id": "c2",
       "title": "Quick & Easy",
-      "color": "#F44336"
+      "color": "#E9C46A"
     },
     {
       "id": "c3",
       "title": "Hamburgers",
-      "color": "#FF9800"
+      "color": "#D2691E"
     },
     {
       "id": "c4",
       "title": "German",
-      "color": "#FFC107"
+      "color": "#C9A66B"
     },
     {
       "id": "c5",
       "title": "Light & Lovely",
-      "color": "#2196F3"
+      "color": "#A8D5BA"
     },
     {
       "id": "c6",
       "title": "Exotic",
-      "color": "#4CAF50"
+      "color": "#DA627D"
     },
     {
       "id": "c7",
       "title": "Breakfast",
-      "color": "#03A9F4"
+      "color": "#F4A261"
     },
     {
       "id": "c8",
       "title": "Asian",
-      "color": "#8BC34A"
+      "color": "#81B622"
     },
     {
       "id": "c9",
       "title": "French",
-      "color": "#E91E63"
+      "color": "#AD7D52"
     },
     {
       "id": "c10",
       "title": "Summer",
-      "color": "#009688"
+      "color": "#FFCC80"
     }
   ]
 }

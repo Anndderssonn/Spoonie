@@ -9,7 +9,7 @@ import 'package:spoonie/infrastructure/models/models.dart';
 class CategoryLocalDatasource implements CategoriesDatasource {
   @override
   Future<List<Category>> getCategories() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     final String categoriesDummyResponse = await rootBundle.loadString(
       'assets/category_dummy.json',
     );
