@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spoonie/domain/entities/entities.dart';
 
 class CategoryGridItem extends StatelessWidget {
@@ -12,7 +13,7 @@ class CategoryGridItem extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return InkWell(
-      onTap: () {},
+      onTap: () => context.push('/meals/${category.id}'),
       splashColor: colors.primary,
       borderRadius: BorderRadius.circular(16),
       child: Container(

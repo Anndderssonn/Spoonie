@@ -17,6 +17,7 @@ class MealLocalDatasource implements MealsDatasource {
     final dummyLocalMeals = MealsDummy.fromJson(mealsDummyData);
     final List<Meal> meals =
         dummyLocalMeals.data
+            .where((meal) => meal.categories.contains(categoryID))
             .map((meal) => MealMapper.localDummyMealToEntity(meal))
             .toList();
     return meals;

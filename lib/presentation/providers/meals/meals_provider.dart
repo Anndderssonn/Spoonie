@@ -16,6 +16,7 @@ class MealsNotifierController extends StateNotifier<List<Meal>> {
   MealsNotifierController({required this.getMeals}) : super([]);
 
   Future<void> loadMeals(String categoryID) async {
+    state = [];
     final meals = await getMeals(categoryID);
     state = meals;
   }

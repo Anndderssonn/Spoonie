@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:spoonie/config/router/app_router.dart';
 import 'package:spoonie/config/theme/app_theme.dart';
-import 'package:spoonie/presentation/screens/screens.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
 
@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
       title: 'Spoonie',
       debugShowCheckedModeBanner: false,
       theme: AppTheme().getTheme(),
-      home: const CategoriesScreen(),
     );
   }
 }
