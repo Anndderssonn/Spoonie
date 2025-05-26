@@ -10,12 +10,8 @@ class CategoryGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
-    final colors = Theme.of(context).colorScheme;
-
-    return InkWell(
+    return GestureDetector(
       onTap: () => context.push('/meals/${category.id}'),
-      splashColor: colors.primary,
-      borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(

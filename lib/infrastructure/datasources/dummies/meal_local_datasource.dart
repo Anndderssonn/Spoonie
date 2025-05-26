@@ -9,7 +9,6 @@ import 'package:spoonie/infrastructure/models/models.dart';
 class MealLocalDatasource implements MealsDatasource {
   @override
   Future<List<Meal>> getMealByCategory(String categoryID) async {
-    await Future.delayed(const Duration(seconds: 1));
     final String mealDummyResponse = await rootBundle.loadString(
       'assets/meals_dummy.json',
     );
