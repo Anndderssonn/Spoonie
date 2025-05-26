@@ -25,14 +25,19 @@ class MealsScreenState extends ConsumerState<MealsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final categories = ref.watch(categoriesProvider);
     final meals = ref.watch(mealsProvider);
+
+    final category = categories.firstWhere(
+      (item) => item.id == widget.categoryID,
+    );
 
     if (meals.isEmpty) {
       return Loading();
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.categoryID)),
+      appBar: AppBar(title: Text(category.title)),
       body: ListView.builder(
         itemCount: meals.length,
         itemBuilder: (context, index) {
