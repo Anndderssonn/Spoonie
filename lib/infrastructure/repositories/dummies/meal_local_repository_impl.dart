@@ -10,4 +10,9 @@ class MealLocalRepositoryImpl implements MealsDatasource {
   Future<List<Meal>> getMealByCategory(String categoryID) {
     return mealsDatasource.getMealByCategory(categoryID);
   }
+
+  @override
+  Future<Meal> getMealByID(String mealID) {
+    return mealsDatasource.getMealByID(mealID);
+  }
 }
