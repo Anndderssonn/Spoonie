@@ -41,7 +41,7 @@ class MealsScreenState extends ConsumerState<MealsScreen> {
       body: ListView.builder(
         itemCount: meals.length,
         itemBuilder: (context, index) {
-          return Text(meals[index].title);
+          return MealItem(meal: meals[index]);
         },
       ),
     );

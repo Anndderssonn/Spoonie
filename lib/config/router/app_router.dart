@@ -17,11 +17,20 @@ final appRouter = GoRouter(
               builder: (context, state) => const CategoriesScreen(),
               routes: <RouteBase>[
                 GoRoute(
-                  path: 'meals/:id',
+                  path: 'meals/:categoryID',
                   name: MealsScreen.name,
                   builder: (context, state) {
-                    final categoryID = state.pathParameters['id'] ?? 'no-id';
+                    final categoryID =
+                        state.pathParameters['categoryID'] ?? 'no-id';
                     return MealsScreen(categoryID: categoryID);
+                  },
+                ),
+                GoRoute(
+                  path: 'meal-detail/:mealID',
+                  name: MealDetailScreen.name,
+                  builder: (context, state) {
+                    final mealID = state.pathParameters['mealID'] ?? 'no-id';
+                    return MealDetailScreen(mealID: mealID);
                   },
                 ),
               ],
