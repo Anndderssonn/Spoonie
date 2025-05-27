@@ -10,6 +10,8 @@ class CategoryGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
+    final colors = Theme.of(context).colorScheme;
+
     return GestureDetector(
       onTap: () => context.push('/meals/${category.id}'),
       child: Container(
@@ -25,7 +27,14 @@ class CategoryGridItem extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Text(category.title, style: textStyles.titleMedium),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(category.icon, size: 34, color: colors.inverseSurface),
+            const SizedBox(height: 10),
+            Text(category.title, style: textStyles.titleMedium),
+          ],
+        ),
       ),
     );
   }

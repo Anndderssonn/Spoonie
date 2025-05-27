@@ -4,6 +4,12 @@ class Category {
   final String id;
   final String title;
   final Color color;
+  final IconData icon;
 
-  Category({required this.id, required this.title, required this.color});
+  Category({
+    required this.id,
+    required this.title,
+    required this.color,
+    required this.icon,
+  });
 }
