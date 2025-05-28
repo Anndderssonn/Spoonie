@@ -35,6 +35,11 @@ final appRouter = GoRouter(
                 ),
               ],
             ),
+            GoRoute(
+              path: '/filters',
+              name: FiltersScreen.name,
+              builder: (context, state) => FiltersScreen(),
+            ),
           ],
         ),
         StatefulShellBranch(
