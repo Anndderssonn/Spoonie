@@ -24,12 +24,14 @@ class CategoriesScreenState extends ConsumerState<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     final categories = ref.watch(categoriesProvider);
+    final homeScaffoldKey = GlobalKey<ScaffoldState>();
 
     if (categories.isEmpty) {
       return Loading();
     }
 
     return Scaffold(
+      key: homeScaffoldKey,
       appBar: AppBar(title: const Text('Pick your category')),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),
@@ -44,6 +46,7 @@ class CategoriesScreenState extends ConsumerState<CategoriesScreen> {
           return CategoryGridItem(category: categories[index]);
         },
       ),
+      drawer: SideMenu(homeScaffoldKey: homeScaffoldKey),
     );
   }
 }
