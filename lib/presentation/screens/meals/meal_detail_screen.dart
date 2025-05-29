@@ -93,7 +93,12 @@ class _CustomSliverAppBar extends ConsumerWidget {
     return SliverAppBar(
       foregroundColor: colors.onError,
       actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border)),
+        IconButton(
+          onPressed: () {
+            ref.read(favoriteMealsProvider.notifier).toggleFavorite(meal);
+          },
+          icon: Icon(Icons.favorite_border),
+        ),
       ],
       pinned: true,
       expandedHeight: size.height * 0.4,
