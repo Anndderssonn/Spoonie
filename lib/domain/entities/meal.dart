@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:spoonie/domain/enums/enums.dart';
 
 class Meal {
@@ -30,4 +31,11 @@ class Meal {
     required this.isVegan,
     required this.isVegetarian,
   });
+}
+
+class DietOption {
+  final String label;
+  final IconData icon;
+
+  DietOption({required this.label, required this.icon});
 }

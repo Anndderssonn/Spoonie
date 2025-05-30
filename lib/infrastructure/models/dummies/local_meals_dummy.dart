@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:spoonie/domain/entities/entities.dart';
 import 'package:spoonie/domain/enums/enums.dart';
 
 class MealsDummy {
@@ -101,3 +103,10 @@ class EnumValues<T> {
     return reverseMap;
   }
 }
+
+final List<DietOption> dietaryOptions = [
+  DietOption(label: 'Gluten Free', icon: Icons.no_food_outlined),
+  DietOption(label: 'Vegan', icon: Icons.spa_outlined),
+  DietOption(label: 'Vegetarian', icon: Icons.restaurant_menu_outlined),
+  DietOption(label: 'Lactose Free', icon: Icons.free_breakfast_outlined),
+];

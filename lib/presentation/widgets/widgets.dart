@@ -1,7 +1,9 @@
 export 'categories/category_grid_item.dart';
-export 'meals/meal_item.dart';
+export 'meals/dietary_table.dart';
 export 'meals/meal_item_trait.dart';
+export 'meals/meal_item.dart';
 export 'shared/custom_appbar.dart';
 export 'shared/custom_bottom_navigation.dart';
 export 'shared/loading.dart';
+export 'shared/no_items.dart';
 export 'shared/side_menu.dart';
