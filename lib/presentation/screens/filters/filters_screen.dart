@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:spoonie/domain/enums/enums.dart';
+import 'package:spoonie/presentation/providers/providers.dart';
 
-class FiltersScreen extends StatefulWidget {
+class FiltersScreen extends ConsumerStatefulWidget {
   static const name = 'filters-screen';
 
   const FiltersScreen({super.key});
 
   @override
-  State<FiltersScreen> createState() => _FiltersScreenState();
+  FiltersScreenState createState() => FiltersScreenState();
 }
 
-class _FiltersScreenState extends State<FiltersScreen> {
-  bool isGlutenFree = false;
-  bool isLactoseFree = false;
-  bool isVegetarian = false;
-  bool isVegan = false;
+class FiltersScreenState extends ConsumerState<FiltersScreen> {
+  @override
+  void initState() {
+    super.initState();
+    ref.read(filtersProvider);
+  }
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final filters = ref.watch(filtersProvider);
 
     return Scaffold(
       backgroundColor: colors.surface,
@@ -31,26 +36,38 @@ class _FiltersScreenState extends State<FiltersScreen> {
               _CustomSwitchTitle(
                 title: 'Gluten-free',
                 subTitle: 'Only include gluten-free meals',
-                value: isGlutenFree,
-                onChanged: (value) => setState(() => isGlutenFree = value),
+                value: filters[Filters.glutenFree] ?? false,
+                onChanged:
+                    (value) => ref
+                        .read(filtersProvider.notifier)
+                        .setFilter(Filters.glutenFree, value),
               ),
               _CustomSwitchTitle(
                 title: 'Lactose-free',
                 subTitle: 'Only include lactose-free meals',
-                value: isLactoseFree,
-                onChanged: (value) => setState(() => isLactoseFree = value),
+                value: filters[Filters.lactoseFree] ?? false,
+                onChanged:
+                    (value) => ref
+                        .read(filtersProvider.notifier)
+                        .setFilter(Filters.lactoseFree, value),
               ),
               _CustomSwitchTitle(
                 title: 'Vegetarian',
                 subTitle: 'Only include vegetarian meals',
-                value: isVegetarian,
-                onChanged: (value) => setState(() => isVegetarian = value),
+                value: filters[Filters.vegetarian] ?? false,
+                onChanged:
+                    (value) => ref
+                        .read(filtersProvider.notifier)
+                        .setFilter(Filters.vegetarian, value),
               ),
               _CustomSwitchTitle(
                 title: 'Vegan',
                 subTitle: 'Only include vegan meals',
-                value: isVegan,
-                onChanged: (value) => setState(() => isVegan = value),
+                value: filters[Filters.vegan] ?? false,
+                onChanged:
+                    (value) => ref
+                        .read(filtersProvider.notifier)
+                        .setFilter(Filters.vegan, value),
               ),
               const Spacer(),
               const SizedBox(height: 90),
@@ -148,33 +165,28 @@ class _CustomButton extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
 
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: colors.inversePrimary,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        child: SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: colors.inversePrimary,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
-              onPressed: () {
-                context.pop();
-              },
-              child: Text(
-                buttonTitle,
-                style: textStyles.bodyMedium?.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            onPressed: () {
+              context.pop();
+            },
+            child: Text(
+              buttonTitle,
+              style: textStyles.bodyMedium?.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),

@@ -4,7 +4,7 @@ import 'package:spoonie/presentation/providers/providers.dart';
 
 final mealDetailProvider =
     StateNotifierProvider<MealMapNotifierController, Map<String, Meal>>((ref) {
-      final fetchMealID = ref.watch(mealsRepositoryProvider).getMealByID;
+      final fetchMealID = ref.watch(mealsRepositoryProvider).getMealBy;
       return MealMapNotifierController(getMeal: fetchMealID);
     });
 

@@ -1,5 +1,6 @@
 import 'package:spoonie/domain/datasources/domain_datasources.dart';
 import 'package:spoonie/domain/entities/meal.dart';
+import 'package:spoonie/domain/enums/enums.dart';
 
 class MealLocalRepositoryImpl implements MealsDatasource {
   final MealsDatasource mealsDatasource;
@@ -7,12 +8,12 @@ class MealLocalRepositoryImpl implements MealsDatasource {
   MealLocalRepositoryImpl({required this.mealsDatasource});
 
   @override
-  Future<List<Meal>> getMealByCategory(String categoryID) {
-    return mealsDatasource.getMealByCategory(categoryID);
+  Future<List<Meal>> getMealsBy(String categoryID, Map<Filters, bool> filters) {
+    return mealsDatasource.getMealsBy(categoryID, filters);
   }
 
   @override
-  Future<Meal> getMealByID(String mealID) {
-    return mealsDatasource.getMealByID(mealID);
+  Future<Meal> getMealBy(String mealID) {
+    return mealsDatasource.getMealBy(mealID);
   }
 }

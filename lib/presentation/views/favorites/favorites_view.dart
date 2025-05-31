@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:spoonie/domain/entities/entities.dart';
 import 'package:spoonie/presentation/providers/providers.dart';
@@ -55,59 +56,62 @@ class _FavoriteMealsCard extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
 
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-      elevation: 2,
-      color: colors.onPrimary,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    meal.title,
-                    style: textStyles.bodyLarge?.copyWith(
-                      color: colors.inverseSurface,
+    return GestureDetector(
+      onTap: () => context.push('/meal-detail/${meal.id}'),
+      child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        elevation: 2,
+        color: colors.onPrimary,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      meal.title,
+                      style: textStyles.bodyLarge?.copyWith(
+                        color: colors.inverseSurface,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    spacing: 10,
-                    children: [
-                      _CustomIcons(
-                        icon: Icons.no_food_outlined,
-                        belongsCategory: meal.isGlutenFree,
-                      ),
-                      _CustomIcons(
-                        icon: Icons.spa_outlined,
-                        belongsCategory: meal.isVegan,
-                      ),
-                      _CustomIcons(
-                        icon: Icons.restaurant_menu_outlined,
-                        belongsCategory: meal.isVegetarian,
-                      ),
-                      _CustomIcons(
-                        icon: Icons.free_breakfast_outlined,
-                        belongsCategory: meal.isLactoseFree,
-                      ),
-                    ],
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    Row(
+                      spacing: 10,
+                      children: [
+                        _CustomIcons(
+                          icon: Icons.no_food_outlined,
+                          belongsCategory: meal.isGlutenFree,
+                        ),
+                        _CustomIcons(
+                          icon: Icons.spa_outlined,
+                          belongsCategory: meal.isVegan,
+                        ),
+                        _CustomIcons(
+                          icon: Icons.restaurant_menu_outlined,
+                          belongsCategory: meal.isVegetarian,
+                        ),
+                        _CustomIcons(
+                          icon: Icons.free_breakfast_outlined,
+                          belongsCategory: meal.isLactoseFree,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            ClipOval(
-              child: FadeInImage(
-                height: 80,
-                width: 80,
-                fit: BoxFit.cover,
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(meal.imageUrl),
+              ClipOval(
+                child: FadeInImage(
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit.cover,
+                  placeholder: MemoryImage(kTransparentImage),
+                  image: NetworkImage(meal.imageUrl),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

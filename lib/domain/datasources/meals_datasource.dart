@@ -1,6 +1,7 @@
 import 'package:spoonie/domain/entities/entities.dart';
+import 'package:spoonie/domain/enums/enums.dart';
 
 abstract class MealsDatasource {
-  Future<List<Meal>> getMealByCategory(String categoryID);
-  Future<Meal> getMealByID(String mealID);
+  Future<List<Meal>> getMealsBy(String categoryID, Map<Filters, bool> filters);
+  Future<Meal> getMealBy(String mealID);
 }

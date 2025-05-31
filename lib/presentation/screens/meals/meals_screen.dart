@@ -33,7 +33,10 @@ class MealsScreenState extends ConsumerState<MealsScreen> {
     );
 
     if (meals.isEmpty) {
-      return Loading();
+      return NoItems(
+        description:
+            '🧫 How about tweaking the ingredients and trying a new combo? Something tasty is surely waiting for you! 😉',
+      );
     }
 
     return Scaffold(
