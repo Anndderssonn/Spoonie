@@ -24,31 +24,8 @@ class MealLocalDatasource implements MealsDatasource {
     final dummyLocalMeals = await getMealsFromLocalData();
     final List<Meal> meals =
         dummyLocalMeals.data
-            .where((meal) {
-              if (meal.categories.contains(categoryID)) {
-                if (!filters[Filters.glutenFree]! &&
-                    !filters[Filters.lactoseFree]! &&
-                    !filters[Filters.vegetarian]! &&
-                    !filters[Filters.vegan]!) {
-                  return true;
-                }
-                if (filters[Filters.glutenFree]! && !meal.isGlutenFree) {
-                  return false;
-                }
-                if (filters[Filters.lactoseFree]! && !meal.isLactoseFree) {
-                  return false;
-                }
-                if (filters[Filters.vegetarian]! && !meal.isVegetarian) {
-                  return false;
-                }
-                if (filters[Filters.vegan]! && !meal.isVegan) {
-                  return false;
-                }
-                return true;
-              }
-              return false;
-            })
-            .map((meal) => MealMapper.localDummyMealToEntity(meal))
+            .where((meal) => _mealPassesFilters(meal, categoryID, filters))
+            .map(MealMapper.localDummyMealToEntity)
             .toList();
     return meals;
   }
@@ -60,5 +37,27 @@ class MealLocalDatasource implements MealsDatasource {
       dummyLocalMeals.data.firstWhere((meal) => meal.id == mealID),
     );
     return meal;
+  }
+
+  bool _mealPassesFilters(
+    MealDatum meal,
+    String categoryID,
+    Map<Filters, bool> filters,
+  ) {
+    if (!meal.categories.contains(categoryID)) return false;
+    if (filters.values.every((active) => active == false)) return true;
+    if ((filters[Filters.glutenFree] ?? false) && !meal.isGlutenFree) {
+      return false;
+    }
+    if ((filters[Filters.lactoseFree] ?? false) && !meal.isLactoseFree) {
+      return false;
+    }
+    if ((filters[Filters.vegetarian] ?? false) && !meal.isVegetarian) {
+      return false;
+    }
+    if ((filters[Filters.vegan] ?? false) && !meal.isVegan) {
+      return false;
+    }
+    return true;
   }
 }

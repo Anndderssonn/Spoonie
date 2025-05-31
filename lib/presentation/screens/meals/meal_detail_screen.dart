@@ -89,6 +89,7 @@ class _CustomSliverAppBar extends ConsumerWidget {
     final colors = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
     final paddingTop = MediaQuery.of(context).padding.top;
+    final isFavoriteMeal = ref.watch(favoriteMealsProvider).contains(meal);
 
     return SliverAppBar(
       foregroundColor: colors.onError,
@@ -97,7 +98,9 @@ class _CustomSliverAppBar extends ConsumerWidget {
           onPressed: () {
             ref.read(favoriteMealsProvider.notifier).toggleFavorite(meal);
           },
-          icon: Icon(Icons.favorite_border),
+          icon: Icon(
+            isFavoriteMeal ? Icons.favorite_rounded : Icons.favorite_border,
+          ),
         ),
       ],
       pinned: true,
